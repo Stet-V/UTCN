@@ -1,7 +1,6 @@
 // 4 digit number displayed backwards without the use of a loop
 
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(){
     int x;
