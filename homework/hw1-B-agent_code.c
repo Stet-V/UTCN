@@ -3,8 +3,8 @@
 
 int main() {
     char name[100];
-    int x, v;
     char first[100], last[100];
+    int x, v;
     scanf("%[^\n]", name);
     scanf("%d%d", &x, &v);
     sscanf(name, "%s %s", first, last);
