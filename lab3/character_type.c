@@ -9,6 +9,7 @@ int main() {
         printf("lowercase\n");
     else if (c >= '0' && c <= '9')
         printf("digit\n");
-    else printf("other\n");
+    else 
+        printf("other\n");
     return 0;
 }

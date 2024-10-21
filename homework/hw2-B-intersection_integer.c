@@ -9,7 +9,7 @@ int main() {
     end = floor(fmin(fmin(b, d), f));
     if (start <= end) 
         printf("%d\n", start);
-    else 
+    else
         printf("doesn't exist\n");
     return 0;
 }

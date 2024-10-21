@@ -4,7 +4,7 @@ int main() {
     float x;
     scanf("%f", &x);
     long long s = 0, i = 1;
-    while(i <= x){
+    while (i <= x) {
         s += i;
         i += 2;
     }

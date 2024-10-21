@@ -14,7 +14,7 @@ int main() {
                 printf("no solutions\n");
         else 
         printf("x = %f", -c / b);
-    else{
+    else {
         float discriminant = b * b - 4 * a * c;
         if (discriminant > 0) {
             float x1 = (-b + sqrt(discriminant)) / (2 * a);
