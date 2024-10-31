@@ -18,16 +18,16 @@ int main() {
         }
     if (c1 == 'd' && c2 == 's')
         for (int i = n; i > 0; i--) {
-            for (int j = 0; j < n - i; j++)
-                printf(" ");
+            if (i != n)
+                printf("%*c", n - i, ' ');
             for (int j = 0; j < i; j++)
                 printf("#");
             printf("\n");
         }
     if (c1 == 'd' && c2 == 'j')
         for (int i = n; i > 0; i--) {
-            for (int j = 0; j < i - 1; j++)
-                printf(" ");
+            if (i != 1)
+                printf("%*c", i - 1, ' ');
             for (int j = 0; j < n - i + 1; j++)
                 printf("#");
             printf("\n");
