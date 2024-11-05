@@ -6,7 +6,7 @@ int main() {
     char command;
     scanf("%d", &n);
     while (1) {
-        printf("Command: ");
+        printf("command: ");
         scanf(" %c", &command);
         switch (command) {
             case 's':

@@ -42,7 +42,7 @@ int large_factorial(int n, int a[]) {
 int main() {
     int n, a[1000] = {1};
     scanf("%d", &n);
-    int na = large_factorial(n, a);;
+    int na = large_factorial(n, a);
     for (int i = 0; i < na; i++)
         printf("%d ", a[i]);
     printf("\n");
