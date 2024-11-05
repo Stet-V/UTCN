@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "functions.h"
+#include "array_utils.h"
 
 void read(int n, float a[]) {
     for(int i = 0; i < n; i++){
@@ -7,7 +7,7 @@ void read(int n, float a[]) {
     }
 }
 
-void print(int n, float a[]) {
+void display(int n, float a[]) {
     for(int i = 0; i < n; i++){
         printf("%f ", a[i]);
     }
