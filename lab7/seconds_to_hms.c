@@ -11,6 +11,6 @@ int main() {
     int h, m, s;
     scanf("%lld", &seconds);
     seconds_to_hms(seconds, &h, &m, &s);
-    printf("%lld %lld %lld\n", h, m, s);
+    printf("%d %d %d\n", h, m, s);
     return 0;
 }
