@@ -21,7 +21,7 @@ int multiply(int na, int a[], int nb, int b[], int c[]) {
         }
     }
     int r = na + nb;
-    while (c[r - 1] == 0)
+    while ((c[r - 1] == 0) && (r > 1))
         r--;
     return r;
 }
@@ -29,7 +29,7 @@ int multiply(int na, int a[], int nb, int b[], int c[]) {
 int large_factorial(int n, int a[]) {
     int na = 1;
     for (int i = n; i >= 2; i--) {
-        int t[1000] = {0};
+        int t[i] = {0};
         int nt = digits(i, t);
         int product[1000] = {0};
         na = multiply(na, a, nt, t, product);
