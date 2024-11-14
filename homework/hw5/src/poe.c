@@ -31,7 +31,7 @@ int find_in_map(int H, int W, char a[H][W], char x, char rows[], int cols[]) {
         for (int j = 0; j < W; j++)
             if (a[i][j] == x) {
                 rows[k] = i < 26 ? ('A' + i) : ('a' + i - 26);
-                cols[k] = j;
+                cols[k] = j + 1;
                 k++;
             }
     return k;
