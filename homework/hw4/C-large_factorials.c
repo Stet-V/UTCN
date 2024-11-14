@@ -21,7 +21,7 @@ int multiply(int na, int a[], int nb, int b[], int c[]) {
         }
     }
     int r = na + nb;
-    while ((c[r - 1] == 0) && (r > 1))
+    while ((r > 1) && (c[r - 1] == 0))
         r--;
     return r;
 }
