@@ -4,8 +4,8 @@
 int main() {
     int H, W;
     scanf("%d %d", &H, &W);
-    char a[H][W], rows[H];
-    int cols[W];
+    char a[H][W], rows[H * W];
+    int cols[W * H];
     create_empty_map(H, W, a);
     print_map(H, W, a);
     char x;
