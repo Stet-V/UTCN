@@ -19,7 +19,8 @@ Use `long long int` instead of `int` for `x` and `px`, add a space between the s
 
 # 03.  
 The code sorts a string in descending order using a bubble sort algorithm.  
-The `myswap` function does not correctly swap the characters because it swaps the pointers, instead of the values they point to. Correctly swap the values the pointers point to:  
+The `myswap` function does not correctly swap the characters because it swaps the pointers, instead of the values they point to.
+Correctly swap the values the pointers point to:  
 ```diff
 - char *aux = c;
 - c = d; 
