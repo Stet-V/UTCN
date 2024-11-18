@@ -14,8 +14,8 @@ Reset the variable `i` with each function call.
 
 # 02.  
 The code multiplies a number `x` by `a` a given number of times (the given code evaluates 2^60).  
-`x` is declared as an int. `px` is declared as the pointer to an int. In the function `mul` there is a space missing before the multiplication operator (*).  
-Use `long long int` instead of `int` for `x` and `px`, add a space between the star and the variable `a` in the function.
+`x` is declared as an int. `px` is declared as the pointer to an int. Inside the function `mul` there is a space missing before the multiplication operator (*).  
+Use `long long int` instead of `int` for `x` and `px`, add a space between the star and the variable `a` inside the function.
 
 # 03.  
 The code sorts a string in descending order using a bubble sort algorithm.  
