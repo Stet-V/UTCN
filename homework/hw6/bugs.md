@@ -1,13 +1,11 @@
+```diff
 ### 00.
 - The code finds the minimum and maximum values in an array of integers.
 - The logic in the function `mm` is incorrect. The check for the maximum only happens when the integer is smaller than the previous minimum.
 - Replace `else if` with `if`:
     ```c
-    else if (a[i] > *mx)
-    ```
-    =>
-    ```c
-    if (a[i] > *mx)
+-   else if (a[i] > *mx)
++   if (a[i] > *mx)
     ```
 
 ### 01.
@@ -25,11 +23,8 @@
 - The `myswap` function does not correctly swap the characters because it swaps the pointers, instead of the values they point to.
 - Correctly swap the values the pointers point to. Add a star before every variable besides `aux` inside the function:
     ```c
-    char *aux = c; c = d; d = aux;
-    ```
-    =>
-    ```c
-    char aux = *c; *c = *d; *d = aux;
+-   char *aux = c; c = d; d = aux;
++   char aux = *c; *c = *d; *d = aux;
     ```
 
 ### 04.
@@ -37,11 +32,8 @@
 - `p2` is not initialised as a pointer.
 - Add a star before `p2`:
     ```c
-    long long *p1, p2;
-    ```
-    =>
-    ```c
-    long long *p1, *p2;
+-   long long *p1, p2;
++   long long *p1, *p2;
     ```
 
 ### 05.
@@ -49,31 +41,23 @@
 - The function `find_smallest` returns the pointer to a local variable, leading to undefined behaviour. Additionally, division by 0 can cause a runtime error in `main`.
 - Inside `find_smallest`, return the pointer to the smallest element in the array, working with `min` as a pointer and not as a value. In `main`, start the loop from 1 and initialise the first term separately:
     ```c
-    float *find_smallest(float* a, int n){
-            float min = a[0];
-            for (int i=1; i<n; i++)
-                    if (a[i] < min)
-                            min = a[i];
-            float *pmin = &min;
-            return pmin;
-    }
-    ```
-    =>
-    ```c
-    float *find_smallest(float* a, int n){
-            float *min = &a[0];
-            for(int i=1; i<n; i++)
-                    if (a[i] < *min)
-                            min = &a[i];
-            return min;
-    }
+-   float *find_smallest(float* a, int n){
+-           float min = a[0];
+-           for (int i=1; i<n; i++)
+-                   if (a[i] < min)
+-                           min = a[i];
+-           float *pmin = &min;
+-           return pmin;
++   float *find_smallest(float* a, int n){
++           float *min = &a[0];
++           for(int i=1; i<n; i++)
++                   if (a[i] < *min)
++                           min = &a[i];
++           return min;
     ```
     ```c
-    for (int i=0; i<n; i++) *(x+i) = 1.f / i;
-    ```
-    =>
-    ```c
-    for (int i=1; i<n; i++) *(x+i) = 1.f / i; x[0] = 1.f
+-   for (int i=0; i<n; i++) *(x+i) = 1.f / i;
++   for (int i=1; i<n; i++) *(x+i) = 1.f / i; x[0] = 1.f
     ```
 
 ### 06.
@@ -81,11 +65,8 @@
 - The second while loop in the `cnt` function may access memory out of bounds if `x` is not found in the array.
 - Inside `cnt` add a boundary check in the second while loop:
     ```c
-    while(*a == x){ r++; a++; }
-    ```
-    =>
-    ```c
-    while(n && *a == x){ n--; r++; a++; }
+-   while(*a == x){ r++; a++; }
++   while(n && *a == x){ n--; r++; a++; }
     ```
 
 ### 07.
@@ -93,18 +74,12 @@
 - The expression `k--` is incorrect because it decrements the pointer `k` instead of the value it points to. The if statement doesn't check whether `p` is equal to `q`, leading to an incorrect result in that scenario.
 - Decrement the value the pointer `k` points to instead of the pointer itself. Add an additional check inside the if statement:
     ```c
-    *k--;
-    ```
-    =>
-    ```c
-    (*k)--;
+-   *k--;
++   (*k)--;
     ```
     ```c
-    if (*k == 0 || !p)
-    ```
-    =>
-    ```c
-    if (*k == 0 || !p || p == q)
+-   if (*k == 0 || !p)
++   if (*k == 0 || !p || p == q)
     ```
 
 ### 08.
@@ -112,11 +87,8 @@
 - Array indices start at 0 and go up to `n-1` for an array of size `n`, so having an upper bound of `n` is incorrect.
 - Adjust the upper bound of the array:
     ```c
-    int a = 0, b = n;
-    ```
-    =>
-    ```c
-    int a = 0, b = n - 1;
+-   int a = 0, b = n;
++   int a = 0, b = n - 1;
     ```
 
 ### 09.
@@ -124,11 +96,8 @@
 - `p1` and `p2` do not target the left and right sides of the array around its middle.
 - Adjust the initialisation of `p1` and `p2` to correctly target the left and right sides of the array around its middle:
     ```c
-    short *p1 = b + n/2; short *p2 = p1 + 1;
-    ```
-    =>
-    ```c
-    short *p1 = b + (n / 2 - 1); short *p2 = b + (n / 2 + (n % 2));
+-   short *p1 = b + n/2; short *p2 = p1 + 1;
++   short *p1 = b + (n / 2 - 1); short *p2 = b + (n / 2 + (n % 2));
     ```
 
 ### 10.
@@ -136,11 +105,8 @@
 - The `getprod` function expects an array of `int` but is being passed an array of `float`.
 - Change the type of the array parameter in the `getprod` function to `float`:
     ```c
-    void getprod(int n, float *res, int *x);
-    ```
-    =>
-    ```c
-    void getprod(int n, float *res, float *x);
+-   void getprod(int n, float *res, int *x);
++   void getprod(int n, float *res, float *x);
     ```
 
 ### 11.
@@ -148,28 +114,20 @@
 - `sizeof(x)` in the `getsum` function returns the size of the pointer, not the size of the array.
 - Pass the size of the array as an additional parameter to the `getsum` function:
     ```c
-    float getsum(float *x) {
-            float sum = 0;
-            for(int i=0; i<sizeof(x)/sizeof(float); i++)
-                    sum += x[i];
-            return sum;
-    }
-    ```
-    =>
-    ```c
-    float getsum(float* x, int size) {
-            float sum = 0;
-            for(int i = 0; i < size; i++)
-                    sum += x[i];
-            return sum;
-    }
+-   float getsum(float *x) {
+-           float sum = 0;
+-           for(int i=0; i<sizeof(x)/sizeof(float); i++)
+-                   sum += x[i];
+-           return sum;
++   float getsum(float* x, int size) {
++           float sum = 0;
++           for(int i = 0; i < size; i++)
++                   sum += x[i];
++           return sum;
     ```
     ```c
-    float s = getsum(x);
-    ```
-    =>
-    ```c
-    float s = getsum(x, sizeof(x)/sizeof(float));
+-   float s = getsum(x);
++   float s = getsum(x, sizeof(x)/sizeof(float));
     ```
 
 ### 12.
@@ -177,11 +135,8 @@
 - Inside the `getbiggest` function, `res` is a local pointer variable, and assigning `&max` to `res` does not change the value of the pointer `p` in the `main` function.
 - Dereference `res` and assign `max` to the location it points to:
     ```c
-    res = &max;
-    ```
-    =>
-    ```c
-    *res = max;
+-   res = &max;
++   *res = max;
     ```
 
 ### 13.
@@ -189,11 +144,8 @@
 - The pointer `p` is not initialised before being used in the `getaverage` function.
 - Allocate memory for `p` before passing it to the function:
     ```c
-    double *p;
-    ```
-    =>
-    ```c
-    double result; double *p = &result;
+-   double *p;
++   double result; double *p = &result;
     ```
 
 ### 14.
@@ -201,18 +153,12 @@
 - The size of the array `a` is not correctly calculated (the size of an `int` can vary). The inner while loop in the second part of the code does not check for array bounds.
 - Calculate the size of `a` dividing by the size of one of its elements. Add a boundary check in the inner while loop:
     ```c
-    int n = sizeof(a) / 4;
-    ```
-    =>
-    ```c
-    int n = sizeof(a) / sizeof(a[0]);
+-   int n = sizeof(a) / 4;
++   int n = sizeof(a) / sizeof(a[0]);
     ```
     ```c
-    while(i<n)
-    ```
-    =>
-    ```c
-    while(i < n && a[i] == x)
+-   while(i<n)
++   while(i < n && a[i] == x)
     ```
 
 ### 15.
@@ -220,9 +166,7 @@
 - `pmin` and `pmax` both point to the first element of the array `a`.
 - Pass separate variables to store the minimum and maximum values:
     ```c
-    float *pmin = a; float *pmax = a;
+-   float *pmin = a; float *pmax = a;
++   float min = a[0]; float max = a[0]; float *pmin = &min; float *pmax = &max;
     ```
-    =>
-    ```c
-    float min = a[0]; float max = a[0]; float *pmin = &min; float *pmax = &max;
-    ```
+```
