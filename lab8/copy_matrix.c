@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 int **copy_matrix(int n, int m, int a[n][m]) {
-    int **b = malloc(n * sizeof(int *));
+    int **b = calloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
-        b[i] = malloc(m * sizeof(int));
+        b[i] = calloc(m * sizeof(int));
         for (int j = 0; j < m; j++)
             b[i][j] = a[i][j];
     }
