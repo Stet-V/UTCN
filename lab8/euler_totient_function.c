@@ -19,7 +19,7 @@ int totient(int n) {
 }
 
 int *euler_totient(int n) {
-    int *phi = malloc((n + 1) * sizeof(int));
+    int *phi = calloc((n + 1) * sizeof(int));
     phi[0] = n;
     for (int i = 1; i <= n; i++) {
         phi[i] = totient(i);
