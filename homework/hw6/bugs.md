@@ -108,7 +108,8 @@ The code swaps elements symmetrically around the middle of the array.
 `p1` and `p2` do not target the left and right sides of the array around its middle.  
 Adjust the initialisation of `p1` and `p2` to correctly target the left and right sides of the array around its middle:  
 ```diff
-- short *p1 = b + n/2; short *p2 = p1 + 1;
+- short *p1 = b + n/2;
+- short *p2 = p1 + 1;
 + short *p1 = b + (n / 2 - 1);
 + short *p2 = b + (n / 2 + (n % 2));
 ```
