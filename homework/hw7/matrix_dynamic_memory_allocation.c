@@ -20,6 +20,7 @@ void print_matrix(int **a, int *dims, int n) {
 }
 
 void delete_row(int **a, int *dims, int *n, int i) {
+    free(a[i]);
     (*n)--;
     for (int k = i; k < *n; k++) {
         a[k] = a[k + 1];
