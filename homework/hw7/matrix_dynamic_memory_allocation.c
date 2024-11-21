@@ -20,13 +20,11 @@ void print_matrix(int **a, int *dims, int n) {
 }
 
 void delete_row(int **a, int *dims, int *n, int i) {
-    *n = *n - 1;
+    (*n)--;
     for (int k = i; k < *n; k++) {
         a[k] = a[k + 1];
         dims[k] = dims[k + 1];
     }
-    // a = realloc(a, *n * sizeof(int *));
-    // dims = realloc(dims, *n * sizeof(int));
 }
 
 void delete_column(int **a, int *dims, int *n, int j) {
@@ -34,14 +32,11 @@ void delete_column(int **a, int *dims, int *n, int j) {
         if ((j == 0) && (dims[i] == 1)) {
             delete_row(a, dims, n, i);
             i--;
-            continue;
-        }
-        if (j < dims[i]) {
+        } else if (j < dims[i]) {
             for (int k = j; k < dims[i] - 1; k++) {
                 a[i][k] = a[i][k + 1];
             }
             dims[i] -= 1;
-            a[i] = realloc(a[i], dims[i] * sizeof(int));
         }
     }
 }
