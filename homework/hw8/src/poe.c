@@ -13,10 +13,6 @@ char row_label(int i) {
     return i < 26 ? ('A' + i) : ('a' + i - 26);
 }
 
-int row_label_index(char c) {
-    return c >= 'a' ? (c - 'a' + 26) : (c - 'A');
-}
-
 void print_map(int H, int W, char a[H][W]) {
     printf(" ");
     for (int i = 1; i <= W; i++)
@@ -57,6 +53,10 @@ void encode(int H, int W, char a[H][W], char* s) {
     s[k] = '\0';
 }
 
+int row_label_index(char c) {
+    return c >= 'a' ? (c - 'a' + 26) : (c - 'A');
+}
+
 void decode(int H, int W, char a[H][W], char* s) {
     char c, row;
     int column;
@@ -65,12 +65,10 @@ void decode(int H, int W, char a[H][W], char* s) {
             a[i][j] = '.';
     while (*s) {
         int n = 0;
-        char prefix = '\0';
-        if (sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n) == 4) {
-            if (prefix != 'o')
-                c = prefix;
-        } else 
-            break;
+        char prefix;
+        sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n);
+        if (prefix != 'o')
+            c = prefix;
         a[row_label_index(row)][column - 1] = c;
         s += n;
     }
