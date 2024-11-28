@@ -174,7 +174,7 @@ Calculate the size of `a` dividing by the size of one of its elements. Add a bou
 + int n = sizeof(a) / sizeof(a[0]);
 ```
 ```diff
-- while(i<n)
+- while(a[i] == x)
 + while(i < n && a[i] == x)
 ```
 
