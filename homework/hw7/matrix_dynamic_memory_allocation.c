@@ -19,25 +19,28 @@ void print_matrix(int **a, int *dims, int n) {
     }
 }
 
-void delete_row(int **a, int *dims, int *n, int i) {
-    free(a[i]);
+void delete_row(int ***a, int **dims, int *n, int i) {
+    free((*a)[i]);
     (*n)--;
     for (int k = i; k < *n; k++) {
-        a[k] = a[k + 1];
-        dims[k] = dims[k + 1];
+        (*a)[k] = (*a)[k + 1];
+        (*dims)[k] = (*dims)[k + 1];
     }
+    *a = realloc(*a, *n * sizeof(int *));
+    *dims = realloc(*dims, *n * sizeof(int));
 }
 
-void delete_column(int **a, int *dims, int *n, int j) {
+void delete_column(int ***a, int **dims, int *n, int j) {
     for (int i = 0; i < *n; i++) {
-        if ((j == 0) && (dims[i] == 1)) {
+        if ((j == 0) && ((*dims)[i] == 1)) {
             delete_row(a, dims, n, i);
             i--;
-        } else if (j < dims[i]) {
-            for (int k = j; k < dims[i] - 1; k++) {
-                a[i][k] = a[i][k + 1];
+        } else if (j < (*dims)[i]) {
+            for (int k = j; k < (*dims)[i] - 1; k++) {
+                (*a)[i][k] = (*a)[i][k + 1];
             }
-            dims[i] -= 1;
+            (*a)[i] = realloc((*a)[i], ((*dims)[i] - 1) * sizeof(int));
+            (*dims)[i]--;
         }
     }
 }
@@ -59,11 +62,11 @@ int main() {
     print_matrix(a, dims, n);
     int j;
     scanf("%d", &j);
-    delete_column(a, dims, &n, j);
+    delete_column(&a, &dims, &n, j);
     print_matrix(a, dims, n);
     int i;
     scanf("%d", &i);
-    delete_row(a, dims, &n, i);
+    delete_row(&a, &dims, &n, i);
     print_matrix(a, dims, n);
     free_matrix(a, dims, n);
     return 0;

@@ -58,14 +58,13 @@ int row_label_index(char c) {
 }
 
 void decode(int H, int W, char a[H][W], char* s) {
-    char c, row;
+    char c, row, prefix;
     int column;
     for (int i = 0; i < H; i++)
         for (int j = 0; j < W; j++)
             a[i][j] = '.';
     while (*s) {
         int n = 0;
-        char prefix;
         sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n);
         if (prefix != 'o')
             c = prefix;
