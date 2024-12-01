@@ -39,8 +39,8 @@ void delete_column(int ***a, int **dims, int *n, int j) {
             for (int k = j; k < (*dims)[i] - 1; k++) {
                 (*a)[i][k] = (*a)[i][k + 1];
             }
-            (*a)[i] = realloc((*a)[i], ((*dims)[i] - 1) * sizeof(int));
             (*dims)[i]--;
+            (*a)[i] = realloc((*a)[i], ((*dims)[i]) * sizeof(int));
         }
     }
 }

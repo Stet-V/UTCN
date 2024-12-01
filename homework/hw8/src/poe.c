@@ -48,7 +48,7 @@ void encode(int H, int W, char a[H][W], char* s) {
             if (a[i][j] != '.') {
                 if(a[i][j] >= '0' && a[i][j] <= '9')
                     k += sprintf(s + k, "o");
-                k += sprintf(s + k, "%c %c%c ", a[i][j], row_label(i), j + '1');
+                k += sprintf(s + k, "%c %c%d ", a[i][j], row_label(i), j + 1);
             }
     s[k] = '\0';
 }
