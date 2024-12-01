@@ -41,12 +41,12 @@ int find_in_map(int H, int W, char a[H][W], char x, char rows[], int cols[]) {
     return k;
 }
 
-void encode(int H, int W, char a[H][W], char* s) {
+void encode(int H, int W, char a[H][W], char *s) {
     int k = 0;
     for (int i = 0; i < H; i++)
         for (int j = 0; j < W; j++)
             if (a[i][j] != '.') {
-                if(a[i][j] >= '0' && a[i][j] <= '9')
+                if (a[i][j] >= '0' && a[i][j] <= '9')
                     k += sprintf(s + k, "o");
                 k += sprintf(s + k, "%c %c%d ", a[i][j], row_label(i), j + 1);
             }
@@ -57,7 +57,7 @@ int row_label_index(char c) {
     return c >= 'a' ? (c - 'a' + 26) : (c - 'A');
 }
 
-void decode(int H, int W, char a[H][W], char* s) {
+void decode(int H, int W, char a[H][W], char *s) {
     char c, row, prefix;
     int column;
     for (int i = 0; i < H; i++)
