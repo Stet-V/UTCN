@@ -31,11 +31,11 @@ void sieveEratosthenes(ll n, ll *primes, int *count) {
 }
 
 ll lcm(ll a, ll b) {
-    ll lcm = 1, lim, size = sqrt(b); // approximately sqrt(b) / log(sqrt(b)) (Gauss-Legendre) for large b's, otherwise Meissel–Lehmer -> beyond the scope 
+    ll lcm = 1, lim, size = sqrt(b); // sqrt(b) / log(sqrt(b)) Gauss-Legendre, Meissel–Lehmer
     ll *primes = malloc(size * sizeof(ll));
     int count = 0;
     sieveEratosthenes(size, primes, &count);
-    ll *maxPower = calloc(b + 1, sizeof(ll)); // hash table 
+    ll *maxPower = calloc(b + 1, sizeof(ll));
     for (ll i = a; i <= b; i++) {
         lim = i;
         for (int j = 0; j < count && primes[j] * primes[j] <= lim; j++) {
