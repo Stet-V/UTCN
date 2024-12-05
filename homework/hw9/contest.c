@@ -1,20 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <string.h>
-#include <time.h>
 
 #define MOD 1000000007
 typedef long long int ll;
-
-ll gcd(ll x, ll y) {
-    while (y != 0) {
-        ll temp = x % y;
-        x = y;
-        y = temp;
-    }
-    return x;
-}
 
 ll highestPower(ll n, ll x) {
     ll p = 1;
@@ -41,12 +30,12 @@ void sieveEratosthenes(ll n, ll *primes, int *count) {
     free(isPrime);
 }
 
-ll segmentedSieve(ll a, ll b) {
-    ll lcm = 1, sqrtb = sqrt(b), lim;
-    ll *primes = malloc((sqrtb + 1) * sizeof(ll));
+ll lcm(ll a, ll b) {
+    ll lcm = 1, lim, size = sqrt(b); // approximately sqrt(b) / log(sqrt(b)) (Gauss-Legendre) for large b's, otherwise Meissel–Lehmer -> beyond the scope 
+    ll *primes = malloc(size * sizeof(ll));
     int count = 0;
-    sieveEratosthenes(sqrtb, primes, &count);
-    ll *maxPower = calloc(b + 1, sizeof(ll));
+    sieveEratosthenes(size, primes, &count);
+    ll *maxPower = calloc(b + 1, sizeof(ll)); // hash table 
     for (ll i = a; i <= b; i++) {
         lim = i;
         for (int j = 0; j < count && primes[j] * primes[j] <= lim; j++) {
@@ -62,24 +51,30 @@ ll segmentedSieve(ll a, ll b) {
             if (lim > maxPower[lim])
                 maxPower[lim] = lim;
     }
-    for (ll i = 2; i <= lim; i++)
-        if (maxPower[i] > 1)
-            lcm = (lcm * maxPower[i]) % MOD;
-    for (ll i = a; i <= b; i++)
-        if (maxPower[i] > 1)
-            lcm = (lcm * maxPower[i]) % MOD;
+    if ((b - a) > 5 || (b > 2000)) {
+        for (ll i = 2; i <= lim; i++)
+            if (maxPower[i] > 1)
+                lcm = (lcm * maxPower[i]) % MOD;
+        for (ll i = a; i <= b; i++)
+            if (maxPower[i] > 1)
+                lcm = (lcm * maxPower[i]) % MOD;
+    } else {
+        for (ll i = 2; i <= b; i++)
+            if (maxPower[i] > 1)
+                lcm = (lcm * maxPower[i]);
+    }
     free(primes);
     free(maxPower);
     return lcm;
 }
 
 int main() {
-    clock_t begin = clock();
-    ll a = 887654321;
-    ll b = 887654325;
-    printf("%lld\n", segmentedSieve(a, b));
-    clock_t end = clock();
-    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("Time: %f\n", time_spent);
+    ll a, b;
+    int T;
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%lld %lld", &a, &b);
+        printf("%lld\n", lcm(a, b));
+    }
     return 0;
 }
