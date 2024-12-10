@@ -1,5 +1,3 @@
-// idei: functia phi a lui Euler
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
