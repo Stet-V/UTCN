@@ -64,7 +64,7 @@ void decode(int H, int W, char a[H][W], char *s) {
         for (int j = 0; j < W; j++)
             a[i][j] = '.';
     while (*s) {
-        s += sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n);
+        s += sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column);
         if (prefix != 'o')
             c = prefix;
         a[row_label_index(row)][column - 1] = c;

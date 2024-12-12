@@ -49,14 +49,14 @@ ll lcm(ll a, ll b) {
     int useMod = (b - a > 5 || b > 2000);
     for (int j = 0; j < count; j++)
         if (maxPower[j] > 1)
-            lcm = useMod ? (lcm * maxPower[j]) % MOD : lcm * maxPower[j];
+            lcm = useMod ? (lcm % MOD * maxPower[j] % MOD) % MOD : lcm * maxPower[j];
     for (ll i = a; i <= b; i++) {
         ll temp = i;
         for (int j = 0; j < count; j++)
             while (temp % primes[j] == 0)
                 temp /= primes[j];
         if (temp > 1)
-            lcm = useMod ? (lcm * temp) % MOD : lcm * temp;
+            lcm = useMod ? (lcm % MOD * temp % MOD) % MOD : lcm * temp;
     }
     free(primes);
     free(maxPower);
