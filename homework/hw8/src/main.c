@@ -10,7 +10,7 @@ int main() {
     //     {'.', 'B', '.', '0', '.'}
     // };
     // print_map(H, W, a);
-    // char *s = calloc(H * W * 7, sizeof(char));
+    // char *s = calloc(142, sizeof(char));
     // encode(H, W, a, s);
     // printf("%s\n", s);
     int H = 3, W = 5;
