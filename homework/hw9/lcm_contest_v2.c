@@ -31,37 +31,32 @@ void sieveEratosthenes(ll n, ll *primes, int *count) {
 }
 
 ll lcm(ll a, ll b) {
-    ll lcm = 1, lim, size = ((b - a) > sqrt(b)) ? (b - a) : (ll)sqrt(b);
+    ll lcm = 1, size = (b - a > sqrt(b)) ? (b - a) : (ll)sqrt(b);
     ll *primes = malloc(size * sizeof(ll));
     int count = 0;
     sieveEratosthenes(size, primes, &count);
-    ll *maxPower = calloc(b + 1, sizeof(ll));
-    for (ll i = a; i <= b; i++) {
-        lim = i;
-        for (int j = 0; j < count && primes[j] * primes[j] <= lim; j++) {
-            ll p = primes[j];
-            if (lim % p == 0) {
-                ll power = highestPower(lim, p);
-                if (power > maxPower[p])
-                    maxPower[p] = power;
-                lim /= power;
-            }
+    ll *maxPower = calloc(count, sizeof(ll));
+    for (int j = 0; j < count; j++) {
+        ll p = primes[j];
+        ll maxP = 0;
+        for (ll i = a; i <= b; i++) {
+            ll power = highestPower(i, p);
+            if (power > maxP)
+                maxP = power;
         }
-        if (lim > 1)
-            if (lim > maxPower[lim])
-                maxPower[lim] = lim;
+        maxPower[j] = maxP;
     }
-    if ((b - a) > 5 || (b > 2000)) {
-        for (ll i = 2; i <= lim; i++)
-            if (maxPower[i] > 1)
-                lcm = (lcm * maxPower[i]) % MOD;
-        for (ll i = a; i <= b; i++)
-            if (maxPower[i] > 1)
-                lcm = (lcm * maxPower[i]) % MOD;
-    } else {
-        for (ll i = 2; i <= b; i++)
-            if (maxPower[i] > 1)
-                lcm = (lcm * maxPower[i]);
+    int useMod = (b - a > 5 || b > 2000);
+    for (int j = 0; j < count; j++)
+        if (maxPower[j] > 1)
+            lcm = useMod ? (lcm % MOD * maxPower[j] % MOD) % MOD : lcm * maxPower[j];
+    for (ll i = a; i <= b; i++) {
+        ll temp = i;
+        for (int j = 0; j < count; j++)
+            while (temp % primes[j] == 0)
+                temp /= primes[j];
+        if (temp > 1)
+            lcm = useMod ? (lcm % MOD * temp % MOD) % MOD : lcm * temp;
     }
     free(primes);
     free(maxPower);
