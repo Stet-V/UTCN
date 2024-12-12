@@ -50,7 +50,7 @@ void encode(int H, int W, char a[H][W], char *s) {
                     k += sprintf(s + k, "o");
                 k += sprintf(s + k, "%c %c%d ", a[i][j], row_label(i), j + 1);
             }
-    s[k] = '\0';
+    s[k - 1] = '\0';
 }
 
 int row_label_index(char c) {
