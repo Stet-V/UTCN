@@ -50,7 +50,7 @@ void encode(int H, int W, char a[H][W], char *s) {
                     k += sprintf(s + k, "o");
                 k += sprintf(s + k, "%c %c%d ", a[i][j], row_label(i), j + 1);
             }
-    s[k] = '\0';
+    s[k - 1] = '\0';
 }
 
 int row_label_index(char c) {
@@ -64,11 +64,9 @@ void decode(int H, int W, char a[H][W], char *s) {
         for (int j = 0; j < W; j++)
             a[i][j] = '.';
     while (*s) {
-        int n = 0;
-        sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n);
+        s += sscanf(s, "%c%c %c%d %n", &prefix, &c, &row, &column, &n);
         if (prefix != 'o')
             c = prefix;
         a[row_label_index(row)][column - 1] = c;
-        s += n;
     }
 }
