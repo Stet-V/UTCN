@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "poe.h"
 
 void create_empty_map(int H, int W, char a[H][W]) {
@@ -71,4 +72,31 @@ void decode(int H, int W, char a[H][W], char *s) {
         a[row_label_index(row)][column - 1] = c;
         s += n;
     }
+}
+
+int next_states(int H, int W, game_state *gs, char next_player, int n, item *items, game_state *ngs, move *moves) {
+    int k = 0;
+    for (int i = 0; i < n; i++) {
+        game_state new_state = *gs;
+        char item_label[5];
+        sprintf(item_label, "o%d ", i + 1);
+        char* item_pos = strstr(new_state.s, item_label);
+        if (item_pos) {
+            move new_move;
+            new_move.type = 'm';
+            sscanf(item_pos + 3, "%c%d", &new_move.torow, &new_move.tocol);
+            strcpy(item_pos, item_pos + 1);
+            *item_pos = next_player;
+            char *pos = strchr(new_state.s, next_player);
+            strcpy(pos, pos + 5);
+            new_state.players[next_player - 'A'].H += items[i].dH;
+            new_state.players[next_player - 'A'].A += items[i].dA;
+            new_state.players[next_player - 'A'].D += items[i].dD;
+            new_state.players[next_player - 'A'].S += items[i].dS;
+            ngs[k] = new_state;
+            moves[k] = new_move;
+            k++;
+        }
+    }
+    return k;
 }
