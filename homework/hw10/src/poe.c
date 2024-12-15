@@ -78,8 +78,8 @@ int next_states(int H, int W, game_state *gs, char next_player, int n, item *ite
     int k = 0;
     for (int i = 0; i < n; i++) {
         game_state new_state = *gs;
-        char item_label[5];
-        sprintf(item_label, "o%d ", i + 1);
+        char item_label[6];
+        sprintf(item_label, "o%d ", i);
         char* item_pos = strstr(new_state.s, item_label);
         if (item_pos) {
             move new_move;

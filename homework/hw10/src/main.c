@@ -21,7 +21,7 @@ int main() {
     game_state ngs[10];
     move moves[10];
     int states = next_states(H, W, &gs, 'A', n, items, ngs, moves);
-    for (int i = 0; i < states; i++){
+    for (int i = 0; i < states; i++) {
         decode(H, W, a, ngs[i].s);
         print_map(H, W, a);
         printf("%c %c%d\n", moves[i].type, moves[i].torow, moves[i].tocol);
