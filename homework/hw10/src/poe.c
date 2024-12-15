@@ -76,9 +76,9 @@ void decode(int H, int W, char a[H][W], char *s) {
 
 int next_states(int H, int W, game_state *gs, char next_player, int n, item *items, game_state *ngs, move *moves) {
     int k = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < 10; i++) {
         game_state new_state = *gs;
-        char item_label[6];
+        char item_label[6] = {0};
         sprintf(item_label, "o%d ", i);
         char* item_pos = strstr(new_state.s, item_label);
         if (item_pos) {
@@ -89,10 +89,10 @@ int next_states(int H, int W, game_state *gs, char next_player, int n, item *ite
             *item_pos = next_player;
             char *pos = strchr(new_state.s, next_player);
             strcpy(pos, pos + 5);
-            new_state.players[next_player - 'A'].H += items[i].dH;
-            new_state.players[next_player - 'A'].A += items[i].dA;
-            new_state.players[next_player - 'A'].D += items[i].dD;
-            new_state.players[next_player - 'A'].S += items[i].dS;
+            new_state.players[next_player - 'A'].H += items[k].dH;
+            new_state.players[next_player - 'A'].A += items[k].dA;
+            new_state.players[next_player - 'A'].D += items[k].dD;
+            new_state.players[next_player - 'A'].S += items[k].dS;
             ngs[k] = new_state;
             moves[k] = new_move;
             k++;
