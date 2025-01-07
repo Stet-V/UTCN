@@ -1,0 +1,4 @@
+bin
+files_size.c
+game.c
+input
