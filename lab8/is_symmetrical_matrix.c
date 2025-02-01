@@ -12,9 +12,9 @@ int is_symmetrical(int n, int **a) {
 int main() {
     int n, m;
     scanf("%d %d", &n, &m);
-    int **a = calloc(n * sizeof(int *));
+    int **a = calloc(n, sizeof(int *));
     for (int i = 0; i < n; i++) {
-        a[i] = calloc(m * sizeof(int));
+        a[i] = calloc(m, sizeof(int));
         for (int j = 0; j < m; j++)
             scanf("%d", &a[i][j]);
     }
