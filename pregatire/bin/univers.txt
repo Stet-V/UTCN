@@ -1,0 +1,8 @@
+7
+Caladan|Atreides|-2 2.8 0.1
+Geldi Prime| Harkonnen|4 6 0
+Arrakis|Atreides|1.5 -2 0.1
+Solara|2 2 0.1 1.2 0.5
+Salusa Secundus|Corrino|8 4 0
+Alpha Centauri|7.3 6 -0.1 0.5 3
+Tleilax|Bene Tleilax|8 7 0
